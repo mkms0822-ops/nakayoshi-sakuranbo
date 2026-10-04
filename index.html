@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>nakayoshi｜みんなで遊びましょーの会</title>
+<meta name="description" content="全力で思いっきり遊ぼうね。みんなで遊びましょーの会 nakayoshi。since 2026">
+<meta property="og:type" content="website">
+<meta property="og:title" content="nakayoshi｜みんなで遊びましょーの会">
+<meta property="og:description" content="Let's have a blast together! 全力で思いっきり遊ぼうね">
+<meta name="theme-color" content="#cfe0f5">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:#dce9f7;
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+    color:#2d3a4a;
+    -webkit-text-size-adjust:100%;
+    overflow-x:hidden;
+  }
+
+  .wrap{
+    max-width:760px;margin:0 auto;
+    padding:16px 12px calc(28px + env(safe-area-inset-bottom,0px));
+    padding-top:calc(16px + env(safe-area-inset-top,0px));
+  }
+
+  /* ====== トップ画像をライズアップ ====== */
+  .top{
+    position:relative;
+    opacity:0;
+    transform:translateY(54px) scale(.97);
+    filter:blur(8px);
+    transition:opacity 1.1s cubic-bezier(.16,1,.3,1),
+               transform 1.1s cubic-bezier(.16,1,.3,1),
+               filter 1.1s cubic-bezier(.16,1,.3,1);
+    will-change:opacity,transform,filter;
+  }
+  .top.up{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
+
+  .top-in{
+    position:relative;
+    border-radius:16px;overflow:hidden;
+    box-shadow:0 12px 36px rgba(60,90,130,.22);
+    background:#dce9f7;
+  }
+  .top-in img{width:100%;height:auto;display:block}
+
+  /* ====== 画像の上に重ねる、見えないボタン ====== */
+  .hot{
+    position:absolute;
+    border:none;background:transparent;padding:0;
+    cursor:pointer;
+    -webkit-tap-highlight-color:transparent;
+    text-indent:-9999px;overflow:hidden;
+    display:block;z-index:3;
+  }
+  .hot:focus-visible{outline:3px solid #e03a3a;outline-offset:4px;border-radius:50%}
+  .hot:active{transform:scale(.96)}
+
+  /* さくらんぼ（画像から実測した位置） */
+  .hot.play{left:29.84%;top:59.15%;width:17.82%;height:11.85%;border-radius:50%}
+  .hot.arch{left:48.66%;top:59.30%;width:17.54%;height:11.70%;border-radius:50%}
+  /* 問い合わせ・プライバシーポリシーの行 */
+  .hot.info{left:27.50%;top:84.30%;width:45.00%;height:2.60%;border-radius:8px}
+
+  /* ====== さくらんぼの緩やかなパルス ====== */
+  .pulse{
+    position:absolute;pointer-events:none;z-index:2;
+    border-radius:50%;
+    box-shadow:0 0 0 0 rgba(224,58,58,0);
+  }
+  .pulse.play{left:29.84%;top:59.15%;width:17.82%;height:11.85%}
+  .pulse.arch{left:48.66%;top:59.30%;width:17.54%;height:11.70%}
+  .top.up .pulse{animation:cherryPulse 3.2s ease-in-out infinite}
+  .top.up .pulse.arch{animation-delay:1.6s}
+  @keyframes cherryPulse{
+    0%   {box-shadow:0 0 0 0    rgba(224,58,58,.38); transform:scale(1)}
+    60%  {box-shadow:0 0 0 18px rgba(224,58,58,0);   transform:scale(1.03)}
+    100% {box-shadow:0 0 0 0    rgba(224,58,58,0);   transform:scale(1)}
+  }
+
+  /* ====== 画像の下のボタン ====== */
+  .btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0 0}
+  .btn{
+    display:flex;align-items:center;justify-content:center;gap:7px;
+    padding:16px 10px;border:none;border-radius:99px;
+    background:#e03a3a;color:#fff;
+    font-family:inherit;font-size:15.5px;font-weight:700;
+    text-decoration:none;cursor:pointer;
+    box-shadow:0 5px 16px rgba(224,58,58,.3);
+    transition:filter .15s,transform .15s;
+  }
+  .btn.sub{background:#fff;color:#c0392b;border:2px solid #f3b9b9;box-shadow:none}
+  .btn:hover{filter:brightness(1.07)}
+  .btn:active{transform:translateY(1px)}
+  .btn:focus-visible{outline:3px solid #2d3a4a;outline-offset:3px}
+  .btn-wide{
+    grid-column:1/-1;background:#fff;color:#4a5a6e;
+    border:2px solid #c9d8ea;box-shadow:none;font-size:14.5px;
+  }
+
+  /* ====== ダイアログ ====== */
+  .modal{
+    position:fixed;inset:0;z-index:1000;display:none;
+    background:rgba(40,60,85,.55);
+    padding:18px;overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+  .modal.open{display:block}
+  .modal-in{
+    max-width:580px;margin:34px auto;
+    background:#fff;border-radius:18px;
+    padding:24px 22px calc(24px + env(safe-area-inset-bottom,0px));
+    box-shadow:0 18px 50px rgba(30,50,75,.35);
+    position:relative;
+  }
+  .modal-x{
+    position:absolute;top:13px;right:15px;
+    background:none;border:none;font-size:22px;color:#8c9bb0;
+    cursor:pointer;line-height:1;padding:4px;
+  }
+  .modal-x:hover{color:#2d3a4a}
+  .modal h2{
+    font-size:19px;font-weight:700;margin-bottom:6px;
+    display:flex;align-items:center;gap:8px;color:#2d3a4a;
+  }
+  .modal .lead{font-size:12.5px;color:#7b8a9e;line-height:1.8;margin-bottom:18px}
+  .modal h3{font-size:14.5px;font-weight:700;color:#c0392b;margin:20px 0 7px}
+  .modal p{font-size:14px;line-height:1.95;margin-bottom:10px}
+  .modal ul{margin:0 0 10px 20px}
+  .modal li{font-size:13.5px;line-height:1.9;margin-bottom:5px}
+  .modal .note{font-size:12.5px;color:#7b8a9e;line-height:1.85}
+
+  /* 連絡先 */
+  .ct{display:grid;gap:10px;margin:4px 0 6px}
+  .ct a{
+    display:flex;align-items:center;gap:13px;
+    padding:16px 18px;border-radius:14px;
+    background:#fdf2f2;border:2px solid #f3c6c6;
+    text-decoration:none;color:#2d3a4a;
+    transition:border-color .15s,transform .15s;
+  }
+  .ct a:hover{border-color:#e03a3a;transform:translateX(3px)}
+  .ct a:focus-visible{outline:3px solid #e03a3a;outline-offset:2px}
+  .ct .ic{font-size:24px;flex-shrink:0}
+  .ct .tx{flex:1;min-width:0}
+  .ct .tx b{display:block;font-size:17px;font-weight:700;letter-spacing:.02em;word-break:break-all}
+  .ct .tx small{display:block;font-size:11.5px;color:#8c7070;margin-top:3px}
+  .ct .go{font-size:13px;color:#cc9999;flex-shrink:0}
+  .ct-name{
+    text-align:center;font-size:13.5px;color:#5a6a7e;
+    padding:12px 0 2px;line-height:1.8;
+  }
+  .ct-name b{font-size:16px;color:#2d3a4a}
+
+  /* アーカイブの空表示 */
+  .empty{text-align:center;padding:34px 16px 20px}
+  .empty .em{font-size:46px;display:block;margin-bottom:12px}
+  .empty p{font-size:15px;line-height:2;color:#5a6a7e}
+  .empty .sm{font-size:12.5px;color:#8c9bb0;margin-top:10px}
+
+  .tbl{width:100%;border-collapse:collapse;margin:10px 0 14px;font-size:13px}
+  .tbl th,.tbl td{border:1px solid #dbe5f0;padding:9px 11px;text-align:left;line-height:1.75}
+  .tbl th{background:#f2f7fc;width:36%;font-weight:700;color:#4a5a6e}
+
+  .foot{
+    text-align:center;font-size:11.5px;color:#7b8a9e;
+    padding:22px 10px 4px;line-height:1.9;
+  }
+
+  @media (max-width:430px){
+    .btns{grid-template-columns:1fr}
+    .btn{font-size:15px}
+    .modal-in{padding:20px 16px;margin:18px auto}
+    .ct .tx b{font-size:15.5px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .top{opacity:1;transform:none;filter:none;transition:none}
+    .top.up .pulse{animation:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="top" id="top">
+    <div class="top-in">
+      <img src="nakayoshi-top.jpg"
+           alt="nakayoshi since 2026。Let's have a blast together! 全力で思いっきり遊ぼうね。さくらんぼのボタンが2つ（Let's play と Archive）。">
+      <span class="pulse play" aria-hidden="true"></span>
+      <span class="pulse arch" aria-hidden="true"></span>
+      <a class="hot play" href="nakayoshi.html" aria-label="Let's play ― 遊びに行こう">Let's play</a>
+      <button type="button" class="hot arch" onclick="openM('mArch')"
+              aria-label="Archive ― これまでの記録">Archive</button>
+      <button type="button" class="hot info" onclick="openM('mInfo')"
+              aria-label="お問い合わせ・プライバシーポリシー">お問い合わせ・プライバシーポリシー</button>
+    </div>
+  </div>
+
+  <div class="btns">
+    <a class="btn" href="nakayoshi.html">🍒 Let's play</a>
+    <button type="button" class="btn sub" onclick="openM('mArch')">📚 Archive</button>
+    <button type="button" class="btn btn-wide" onclick="openM('mInfo')">
+      ✉️ お問い合わせ・プライバシーポリシー
+    </button>
+  </div>
+
+  <div class="foot">
+    &copy; 2026 Koji Furutani. All Rights Reserved.
+  </div>
+
+</div>
+
+
+<!-- ============ Archive ============ -->
+<div class="modal" id="mArch" onclick="if(event.target===this)closeM('mArch')">
+  <div class="modal-in">
+    <button class="modal-x" onclick="closeM('mArch')" aria-label="閉じる">✕</button>
+    <h2><span>📚</span>Archive</h2>
+    <p class="lead">これまでの活動の記録</p>
+    <div class="empty">
+      <span class="em">🍒</span>
+      <p>まだアーカイブはありません</p>
+      <p class="sm">これから少しずつ、遊んだ記録をためていきます。<br>
+      どうぞお楽しみに。</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ============ お問い合わせ・プライバシーポリシー ============ -->
+<div class="modal" id="mInfo" onclick="if(event.target===this)closeM('mInfo')">
+  <div class="modal-in">
+    <button class="modal-x" onclick="closeM('mInfo')" aria-label="閉じる">✕</button>
+
+    <h2><span>✉️</span>お問い合わせ</h2>
+    <p class="lead">タップするとそのまま発信・メール作成ができます。</p>
+
+    <div class="ct">
+      <a href="tel:09081263532">
+        <span class="ic">📞</span>
+        <span class="tx"><b>090-8126-3532</b><small>タップで電話をかけられます</small></span>
+        <span class="go">&rsaquo;</span>
+      </a>
+      <a href="mailto:m.k.s.m0822@gmail.com?subject=%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B%EF%BC%88nakayoshi%EF%BC%89">
+        <span class="ic">✉️</span>
+        <span class="tx"><b>m.k.s.m0822@gmail.com</b><small>タップでメールを作成できます</small></span>
+        <span class="go">&rsaquo;</span>
+      </a>
+    </div>
+
+    <p class="ct-name">みんなで遊びましょーの会 nakayoshi<br><b>古谷 浩二</b></p>
+
+    <h3>プライバシーポリシー</h3>
+
+    <p>みんなで遊びましょーの会（以下「当会」）は、参加者および
+    お問い合わせいただいた方の個人情報を、次のとおり取り扱います。</p>
+
+    <h3>1. 取得する情報</h3>
+    <p>当会が取得するのは、次のものに限ります。</p>
+    <table class="tbl">
+      <tr><th>お問い合わせ時</th><td>お名前、電話番号、メールアドレス、お問い合わせの内容</td></tr>
+      <tr><th>参加申込時</th><td>お名前、連絡先、参加人数、お子さまの年齢、
+        安全のために必要な範囲でのアレルギー・持病などの情報</td></tr>
+      <tr><th>活動中</th><td>活動の様子を記録した写真・動画</td></tr>
+    </table>
+    <p class="note">このサイトを見るだけでは、個人を特定する情報は一切取得しません。
+    会員登録もアカウントも不要です。</p>
+
+    <h3>2. 利用する目的</h3>
+    <ul>
+      <li>お問い合わせへの回答</li>
+      <li>活動のご案内、開催・中止のご連絡</li>
+      <li>当日の安全管理（けがや急病への対応）</li>
+      <li>活動の記録と報告</li>
+    </ul>
+    <p>これ以外の目的には使いません。</p>
+
+    <h3>3. 写真・動画の取り扱い</h3>
+    <p>活動の様子を撮影し、記録や紹介のために使わせていただくことがあります。
+    <b>お子さまが写ったものを公開する場合は、事前に保護者の方へご確認します。</b></p>
+    <p>すでに公開されているものについて、掲載をやめてほしいというご連絡をいただいた場合は、
+    速やかに取り下げます。上記の連絡先までお知らせください。</p>
+
+    <h3>4. 第三者への提供</h3>
+    <p>ご本人の同意なく、第三者へ提供することはありません。ただし次の場合を除きます。</p>
+    <ul>
+      <li>法令にもとづく開示を求められた場合</li>
+      <li>生命や身体に危険が及ぶおそれがあり、ご本人の同意を得ることが難しい場合
+        （救急搬送時に、医療機関へ持病やアレルギーをお伝えする場合など）</li>
+    </ul>
+
+    <h3>5. 管理と保管</h3>
+    <p>お預かりした情報は、紛失や漏えいが起きないよう注意して管理します。
+    利用する目的がなくなったものは、速やかに消去します。</p>
+
+    <h3>6. 外部のサービスについて</h3>
+    <p>このサイトから、公園などの外部サイトへのリンクを掲載しています。
+    リンク先での情報の取り扱いについては、それぞれのサイトの方針が適用されます。</p>
+
+    <h3>7. 開示・訂正・削除のご希望</h3>
+    <p>ご自身の情報について、内容の確認、訂正、削除をご希望の場合は、
+    上記の連絡先までご連絡ください。ご本人であることを確認のうえ、対応します。</p>
+
+    <h3>8. お問い合わせ先</h3>
+    <p>みんなで遊びましょーの会 nakayoshi<br>
+    代表　古谷 浩二<br>
+    電話　<a href="tel:09081263532" style="color:#c0392b;font-weight:700">090-8126-3532</a><br>
+    メール　<a href="mailto:m.k.s.m0822@gmail.com" style="color:#c0392b;font-weight:700;word-break:break-all">m.k.s.m0822@gmail.com</a></p>
+
+    <p class="note">このポリシーは、必要に応じて見直すことがあります。<br>
+    制定日：2026年10月</p>
+  </div>
+</div>
+
+
+<script>
+/* ============================================================
+   トップ画像のライズアップ
+   ============================================================ */
+(function(){
+  var el = document.getElementById('top');
+  if(!el) return;
+  var img = el.querySelector('img');
+  var done = false;
+
+  function play(){
+    if(done) return;
+    done = true;
+    el.classList.add('up');
+  }
+
+  function watch(){
+    if(!('IntersectionObserver' in window)){ play(); return; }
+    var io = new IntersectionObserver(function(es){
+      for(var i=0;i<es.length;i++){
+        if(es[i].isIntersecting){ play(); io.disconnect(); break; }
+      }
+    }, { threshold: 0.1 });
+    io.observe(el);
+    /* 最初から見えていれば待たずに出す */
+    setTimeout(function(){
+      var r = el.getBoundingClientRect();
+      if(r.top < window.innerHeight && r.bottom > 0) play();
+    }, 60);
+  }
+
+  function ready(){
+    if(img && !img.complete){
+      img.addEventListener('load', watch, { once:true });
+      img.addEventListener('error', play, { once:true });
+      setTimeout(play, 2600);   /* 読み込みが長引いても隠したままにしない */
+    }else{
+      watch();
+    }
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', ready);
+  }else{
+    ready();
+  }
+})();
+
+/* ============================================================
+   ダイアログ
+   ============================================================ */
+function openM(id){
+  document.getElementById(id).classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeM(id){
+  document.getElementById(id).classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e){
+  if(e.key !== 'Escape') return;
+  closeM('mArch');
+  closeM('mInfo');
+});
+</script>
+
+</body>
+</html>
