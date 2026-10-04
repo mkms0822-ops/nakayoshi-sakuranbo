@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <script src="gate.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>nakayoshi｜みんなで遊びましょー</title>
-<meta name="description" content="全力で思いっきり遊ぼうね。みんなで遊びましょー nakayoshi。since 2026">
+<title>nakayoshi｜みんなで遊びましょーの会</title>
+<meta name="description" content="全力で思いっきり遊ぼうね。みんなで遊びましょーの会 nakayoshi。since 2026">
 <meta property="og:type" content="website">
-<meta property="og:title" content="nakayoshi｜みんなで遊びましょー">
+<meta property="og:title" content="nakayoshi｜みんなで遊びましょーの会">
 <meta property="og:description" content="Let's have a blast together! 全力で思いっきり遊ぼうね">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="nk-icon-192.png">
@@ -68,7 +68,8 @@
   .hot.play{left:29.84%;top:59.15%;width:17.82%;height:11.85%;border-radius:50%}
   .hot.arch{left:48.66%;top:59.30%;width:17.54%;height:11.70%;border-radius:50%}
   /* 問い合わせ・プライバシーポリシーの行 */
-  .hot.info{left:27.50%;top:84.30%;width:45.00%;height:2.60%;border-radius:8px}
+  .hot.info{left:28.20%;top:84.30%;width:17.20%;height:2.60%;border-radius:8px}
+  .hot.priv{left:45.90%;top:84.30%;width:25.60%;height:2.60%;border-radius:8px}
 
   /* ====== さくらんぼの緩やかなパルス ====== */
   .pulse{
@@ -193,10 +194,12 @@
       <span class="pulse play" aria-hidden="true"></span>
       <span class="pulse arch" aria-hidden="true"></span>
       <a class="hot play" href="nakayoshi.html" aria-label="Let's play ― 遊びに行こう">Let's play</a>
-      <button type="button" class="hot arch" onclick="openM('mArch')"
+      <button type="button" class="hot arch" onclick="nkmOpen('nkm-arch')"
               aria-label="Archive ― これまでの記録">Archive</button>
-      <button type="button" class="hot info" onclick="openM('mInfo')"
-              aria-label="お問い合わせ・プライバシーポリシー">お問い合わせ・プライバシーポリシー</button>
+      <button type="button" class="hot info" onclick="nkmOpen('nkm-info')"
+              aria-label="お問い合わせ">お問い合わせ</button>
+      <button type="button" class="hot priv" onclick="nkmOpen('nkm-priv')"
+              aria-label="プライバシーポリシー">プライバシーポリシー</button>
     </div>
   </div>
 

@@ -181,7 +181,7 @@
       '<div class="bx">' +
         '<span class="ch">🍒</span>' +
         '<h1>nakayoshi</h1>' +
-        '<p class="sub">みんなで遊びましょー<br>合言葉を入れてください</p>' +
+        '<p class="sub">みんなで遊びましょーの会<br>合言葉を入れてください</p>' +
         '<label for="nk-pw">あいことば</label>' +
         '<input id="nk-pw" type="password" autocomplete="current-password" ' +
           'autocapitalize="off" autocorrect="off" spellcheck="false" ' +

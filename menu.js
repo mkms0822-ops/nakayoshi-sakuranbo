@@ -206,7 +206,8 @@
     return '<div class="nkm-step"><span class="n">' + n + '</span><span class="s">' + s + '</span></div>';
   }
 
-  function privacyHtml() {
+  /* お問い合わせ */
+  function contactHtml() {
     return [
       '<h2><span>✉️</span>お問い合わせ</h2>',
       '<p class="lead">タップするとそのまま発信・メール作成ができます。</p>',
@@ -217,10 +218,34 @@
         '<span class="ic">✉️</span>',
         '<span class="tx"><b>' + MAIL + '</b><small>タップでメールを作成できます</small></span></a>',
       '</div>',
-      '<p class="nkm-name">みんなで遊びましょー nakayoshi<br><b>' + NAME + '</b></p>',
+      '<p class="nkm-name">みんなで遊びましょーの会 nakayoshi<br><b>' + NAME + '</b></p>',
 
-      '<h3>プライバシーポリシー</h3>',
-      '<p>みんなで遊びましょー（以下「当会」）は、参加者および',
+      '<h3>こんなときにご連絡ください</h3>',
+      '<ul>',
+        '<li>会への参加を希望されるとき</li>',
+        '<li>当日の持ち物や集合場所について知りたいとき</li>',
+        '<li>お子さまのアレルギーや持病など、事前にお伝えいただきたいことがあるとき</li>',
+        '<li>開催の有無を確かめたいとき（天候が心配なとき）</li>',
+        '<li>写真の掲載について、ご相談があるとき</li>',
+      '</ul>',
+      '<p class="note">お電話が出られないことがあります。',
+      'その場合はメールをいただければ、折り返しご連絡します。</p>',
+
+      '<div style="margin-top:18px;padding-top:16px;border-top:1px solid #eef2f7">',
+      '<button class="nkm-i" onclick="nkmOpen(\'nkm-priv\')" style="margin:0">',
+      '<span class="ic">🔒</span><span class="tx">プライバシーポリシー',
+      '<small>個人情報の取り扱いについて</small></span></button>',
+      '</div>'
+    ].join('');
+  }
+
+  /* プライバシーポリシー */
+  function privacyHtml() {
+    return [
+      '<h2><span>🔒</span>プライバシーポリシー</h2>',
+      '<p class="lead">お預かりする情報の取り扱いについて</p>',
+
+      '<p>みんなで遊びましょーの会（以下「当会」）は、参加者および',
       'お問い合わせいただいた方の個人情報を、次のとおり取り扱います。</p>',
 
       '<h3>1. 取得する情報</h3>',
@@ -243,10 +268,11 @@
       '<p>活動の様子を撮影し、記録や紹介のために使わせていただくことがあります。',
       '<b>お子さまが写ったものを公開する場合は、事前に保護者の方へご確認します。</b></p>',
       '<p>すでに公開されているものについて、掲載をやめてほしいというご連絡をいただいた場合は、',
-      '速やかに取り下げます。上記の連絡先までお知らせください。</p>',
+      '速やかに取り下げます。お問い合わせ先までお知らせください。</p>',
 
       '<h3>4. 第三者への提供</h3>',
-      '<p>ご本人の同意なく、第三者へ提供することはありません。</p>',
+      '<p>ご本人の同意なく、第三者へ提供することはありません。ただし次の場合を除きます。</p>',
+      '<ul><li>法令にもとづく開示を求められた場合</li>',
       '<li>生命や身体に危険が及ぶおそれがあり、ご本人の同意を得ることが難しい場合',
       '（救急搬送時に、医療機関へ持病やアレルギーをお伝えする場合など）</li></ul>',
 
@@ -265,10 +291,10 @@
 
       '<h3>8. 開示・訂正・削除のご希望</h3>',
       '<p>ご自身の情報について、内容の確認、訂正、削除をご希望の場合は、',
-      '上記の連絡先までご連絡ください。対応します。</p>',
+      'お問い合わせ先までご連絡ください。ご本人であることを確認のうえ、対応します。</p>',
 
       '<h3>9. お問い合わせ先</h3>',
-      '<p>みんなで遊びましょー nakayoshi<br>代表　' + NAME + '<br>',
+      '<p>みんなで遊びましょーの会 nakayoshi<br>代表　' + NAME + '<br>',
       '電話　<a href="tel:' + TELR + '" style="color:#c0392b;font-weight:700">' + TEL + '</a><br>',
       'メール　<a href="mailto:' + MAIL + '" style="color:#c0392b;font-weight:700;word-break:break-all">' + MAIL + '</a></p>',
 
@@ -303,7 +329,7 @@
       '<nav class="nkm-panel">' +
         '<div class="nkm-head">' +
           '<span class="ch">🍒</span>' +
-          '<span class="tt"><b>nakayoshi</b><small>みんなで遊びましょー</small></span>' +
+          '<span class="tt"><b>nakayoshi</b><small>みんなで遊びましょーの会</small></span>' +
           '<button class="nkm-x" onclick="nkmClose()" aria-label="閉じる">✕</button>' +
         '</div>' +
 
@@ -318,7 +344,7 @@
         '<div class="nkm-sec">// このサイトについて</div>' +
         '<button class="nkm-i" onclick="nkmOpen(\'nkm-info\')"><span class="ic">✉️</span>' +
           '<span class="tx">お問い合わせ<small>電話・メール</small></span></button>' +
-        '<button class="nkm-i" onclick="nkmOpen(\'nkm-info\')"><span class="ic">🔒</span>' +
+        '<button class="nkm-i" onclick="nkmOpen(\'nkm-priv\')"><span class="ic">🔒</span>' +
           '<span class="tx">プライバシーポリシー<small>個人情報の取り扱い</small></span></button>' +
         '<button class="nkm-i" onclick="nkmOpen(\'nkm-app\')"><span class="ic">📲</span>' +
           '<span class="tx">アプリとしてインストール<small>ホーム画面に追加する</small></span></button>' +
@@ -338,7 +364,8 @@
       '<p>まだアーカイブはありません</p>' +
       '<p class="sm">これから少しずつ、遊んだ記録をためていきます。<br>どうぞお楽しみに。</p></div>'));
 
-    document.body.appendChild(modal('nkm-info', privacyHtml()));
+    document.body.appendChild(modal('nkm-info', contactHtml()));
+    document.body.appendChild(modal('nkm-priv', privacyHtml()));
 
     document.body.appendChild(modal('nkm-app',
       '<h2><span>📲</span>アプリとしてインストール</h2>' +
@@ -441,6 +468,7 @@
     close();
     closeModal('nkm-arch');
     closeModal('nkm-info');
+    closeModal('nkm-priv');
     closeModal('nkm-app');
   });
 
