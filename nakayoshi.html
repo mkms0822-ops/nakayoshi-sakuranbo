@@ -96,6 +96,69 @@
     width:100%;height:auto;display:block;
   }
 
+
+  /* ====== 園内マップの施設リンク ====== */
+  .spot{
+    position:absolute;z-index:4;
+    border:none;background:transparent;padding:0;
+    cursor:pointer;border-radius:6px;
+    -webkit-tap-highlight-color:transparent;
+    text-indent:-9999px;overflow:hidden;display:block;
+    transition:box-shadow .16s,transform .16s;
+  }
+  .spot:hover,.spot:focus-visible{
+    box-shadow:0 0 0 3px rgba(255,255,255,.9),0 0 0 6px rgba(227,110,30,.65);
+    transform:scale(1.04);outline:none;
+  }
+  .spot:active{transform:scale(.97)}
+  /* 押せる場所だと分かるよう、最初だけ順にふわっと光る */
+  @keyframes spotHint{
+    0%,100%{box-shadow:0 0 0 0 rgba(227,110,30,0)}
+    50%{box-shadow:0 0 0 3px rgba(255,255,255,.85),0 0 0 6px rgba(227,110,30,.5)}
+  }
+  .sheet.up .spot{animation:spotHint 2.6s ease-in-out 2;}
+  .spot:hover{animation:none !important}
+  .sheet.up .spot.s0{animation-delay:0.60s}
+  .sheet.up .spot.s1{animation-delay:0.69s}
+  .sheet.up .spot.s2{animation-delay:0.78s}
+  .sheet.up .spot.s3{animation-delay:0.87s}
+  .sheet.up .spot.s4{animation-delay:0.96s}
+  .sheet.up .spot.s5{animation-delay:1.05s}
+  .sheet.up .spot.s6{animation-delay:1.14s}
+  .sheet.up .spot.s7{animation-delay:1.23s}
+  .sheet.up .spot.s8{animation-delay:1.32s}
+  .sheet.up .spot.s9{animation-delay:1.41s}
+  .sheet.up .spot.s10{animation-delay:1.50s}
+  .sheet.up .spot.s11{animation-delay:1.59s}
+  .sheet.up .spot.s12{animation-delay:1.68s}
+  .sheet.up .spot.s13{animation-delay:1.77s}
+  .sheet.up .spot.s14{animation-delay:1.86s}
+  .sheet.up .spot.s15{animation-delay:1.95s}
+
+  .spot-note{
+    display:flex;align-items:center;justify-content:center;gap:7px;
+    margin:10px auto 0;padding:11px 15px;max-width:520px;
+    background:#fff;border:1px solid #e3ead4;border-radius:99px;
+    font-size:12.5px;color:#6a7a58;text-align:center;line-height:1.6;
+  }
+
+  .spot.s0{left:37.5%;top:21.6%;width:20.0%;height:2.3%}
+  .spot.s1{left:52.5%;top:24.5%;width:10.5%;height:2.1%}
+  .spot.s2{left:42.8%;top:30.5%;width:13.5%;height:2.1%}
+  .spot.s3{left:54.0%;top:33.5%;width:13.5%;height:2.1%}
+  .spot.s4{left:56.5%;top:36.2%;width:10.0%;height:2.1%}
+  .spot.s5{left:49.0%;top:43.0%;width:13.0%;height:2.1%}
+  .spot.s6{left:59.5%;top:44.3%;width:12.5%;height:2.1%}
+  .spot.s7{left:59.5%;top:47.3%;width:12.5%;height:2.1%}
+  .spot.s8{left:14.8%;top:58.7%;width:12.5%;height:2.1%}
+  .spot.s9{left:41.5%;top:57.5%;width:11.5%;height:4.3%}
+  .spot.s10{left:66.5%;top:57.8%;width:12.5%;height:2.1%}
+  .spot.s11{left:60.0%;top:62.6%;width:10.5%;height:2.1%}
+  .spot.s12{left:52.5%;top:68.3%;width:16.0%;height:2.1%}
+  .spot.s13{left:66.5%;top:71.3%;width:12.5%;height:2.1%}
+  .spot.s14{left:27.8%;top:72.2%;width:17.5%;height:2.1%}
+  .spot.s15{left:39.5%;top:74.8%;width:13.5%;height:2.1%}
+
   /* ====== 画像の上に重ねる、見えないボタン ====== */
   .hot{
     position:absolute;
@@ -257,12 +320,29 @@
     </div>
   </div>
 
-  <!-- 2枚目：園内マップ -->
+  <!-- 2枚目：園内マップ（施設名をタップすると公園の公式ページが開きます） -->
   <div class="sheet" id="sh2">
     <div class="sheet-in">
       <img src="nakayoshi-2.jpg" loading="lazy"
            alt="園内マップ。正門・南門・北門、無料駐車場、トイレ、AED設置施設の位置。わくわくアスレチックパーク、こどもの広場、ジャイアントスライダー、ジャブジャブ池、体育館、陸上競技場などの配置図。">
+      <a class="spot s0" href="https://www.kyoto-tanbapark.or.jp/play/page01.html#athletic" target="_blank" rel="noopener" aria-label="わくわくアスレチックパークのページを開く">わくわくアスレチックパーク</a>
+      <a class="spot s1" href="https://www.kyoto-tanbapark.or.jp/sports/page06.html" target="_blank" rel="noopener" aria-label="球技場のページを開く">球技場</a>
+      <a class="spot s2" href="https://www.kyoto-tanbapark.or.jp/play/page04.html#picnic" target="_blank" rel="noopener" aria-label="ピクニックの丘のページを開く">ピクニックの丘</a>
+      <a class="spot s3" href="https://www.kyoto-tanbapark.or.jp/play/page05.html" target="_blank" rel="noopener" aria-label="パターゴルフ場のページを開く">パターゴルフ場</a>
+      <a class="spot s4" href="https://www.kyoto-tanbapark.or.jp/play/page03.html" target="_blank" rel="noopener" aria-label="プールのページを開く">プール</a>
+      <a class="spot s5" href="https://www.kyoto-tanbapark.or.jp/play/page02.html" target="_blank" rel="noopener" aria-label="丹波天文館のページを開く">丹波天文館</a>
+      <a class="spot s6" href="https://www.kyoto-tanbapark.or.jp/sports/page04.html" target="_blank" rel="noopener" aria-label="クラブハウスのページを開く">クラブハウス</a>
+      <a class="spot s7" href="https://www.kyoto-tanbapark.or.jp/sports/page04.html" target="_blank" rel="noopener" aria-label="テニスコートのページを開く">テニスコート</a>
+      <a class="spot s8" href="https://www.kyoto-tanbapark.or.jp/sports/page05.html" target="_blank" rel="noopener" aria-label="軟式野球場のページを開く">軟式野球場</a>
+      <a class="spot s9" href="https://www.kyoto-tanbapark.or.jp/sports/page08.html" target="_blank" rel="noopener" aria-label="京都トレーニングセンターのページを開く">京都トレーニングセンター</a>
+      <a class="spot s10" href="https://www.kyoto-tanbapark.or.jp/sports/page02.html" target="_blank" rel="noopener" aria-label="陸上競技場のページを開く">陸上競技場</a>
+      <a class="spot s11" href="https://www.kyoto-tanbapark.or.jp/sports/page07.html" target="_blank" rel="noopener" aria-label="体育館のページを開く">体育館</a>
+      <a class="spot s12" href="https://www.kyoto-tanbapark.or.jp/sports/page04.html#volley" target="_blank" rel="noopener" aria-label="テニス・バレーコートのページを開く">テニス・バレーコート</a>
+      <a class="spot s13" href="https://www.kyoto-tanbapark.or.jp/sports/page03.html" target="_blank" rel="noopener" aria-label="補助競技場のページを開く">補助競技場</a>
+      <a class="spot s14" href="https://www.kyoto-tanbapark.or.jp/play/page01.html#kids-park" target="_blank" rel="noopener" aria-label="ジャイアントスライダーのページを開く">ジャイアントスライダー</a>
+      <a class="spot s15" href="https://www.kyoto-tanbapark.or.jp/play/page01.html#kids-park" target="_blank" rel="noopener" aria-label="こどもの広場のページを開く">こどもの広場</a>
     </div>
+    <div class="spot-note">👆 施設名をタップすると、公園の公式ページが開きます</div>
   </div>
 
   <!-- 3枚目：園内利用Q&A -->
