@@ -176,7 +176,7 @@
     return new Date(+p[0], +p[1] - 1, +p[2]);
   }
 
-  /* 日本時間の「いま」。端末が海外の時間帯でも、会の時間で判断するため */
+  /* 日本時間の「いま」。端末が海外の時間帯でも、活動の時間で判断するため */
   function nowJst() {
     var d = new Date();
     return new Date(d.getTime() + (d.getTimezoneOffset() + 540) * 60000);
@@ -220,7 +220,7 @@
       }
     } else {
       body = '<div class="big">ありがとう</div>' +
-             '<div class="sub">この回は終わりました。次のご案内をお待ちください</div>';
+             '<div class="sub">この活動は終わりました。次のご案内をお待ちください</div>';
     }
     body += '<div class="date">' + ds + '　' + EVENT.name + '</div>';
     return card('fnCd', '🗓️', '開催日まで', '<div class="cd' + cls + '">' + body + '</div>');
@@ -247,7 +247,7 @@
     var box = document.getElementById('wxBody');
     if (!box) return;
     var n = daysLeft();
-    if (n < 0) { box.innerHTML = '<div class="wx-load">この回は終わりました</div>'; return; }
+    if (n < 0) { box.innerHTML = '<div class="wx-load">この活動は終わりました</div>'; return; }
     if (n > 15) {
       box.innerHTML = '<div class="wx-load">天気予報は開催の2週間ほど前から出ます。<br>' +
                       'もう少しお待ちください</div>';

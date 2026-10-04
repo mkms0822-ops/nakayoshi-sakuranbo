@@ -22,6 +22,28 @@
   var TELR = '09081263532';
   var MAIL = 'm.k.s.m0822@gmail.com';
   var NAME = '古谷 浩二';
+  var LKEY = 'nk-line';   /* LINEの宛先を、この端末に覚えておく */
+
+  function lineUrl() {
+    try { return localStorage.getItem(LKEY) || ''; } catch (e) { return ''; }
+  }
+  function saveLine(v) {
+    try {
+      if (v) localStorage.setItem(LKEY, v);
+      else localStorage.removeItem(LKEY);
+    } catch (e) {}
+  }
+
+  /* 入力されたものを、開けるURLに整える。
+     「@abc123」のようなIDでも、URLでも受け取れるようにする */
+  function normalizeLine(v) {
+    v = (v || '').trim();
+    if (!v) return '';
+    if (/^https?:\/\//i.test(v)) return v;
+    if (v.charAt(0) === '@') return 'https://line.me/R/ti/p/' + encodeURIComponent(v);
+    if (/^[\w.-]+$/.test(v)) return 'https://line.me/R/ti/p/' + encodeURIComponent('@' + v);
+    return '';
+  }
 
   /* インストールの案内をOSに合わせて出し分ける */
   function osKind() {
@@ -136,6 +158,18 @@
     '.nkm-ct .tx{flex:1;min-width:0}',
     '.nkm-ct .tx b{display:block;font-size:17px;font-weight:700;word-break:break-all}',
     '.nkm-ct .tx small{display:block;font-size:11.5px;color:#8c7070;margin-top:3px}',
+    '.nkm-ct .ln-set{position:relative;background:#eefaf0;border-color:#b9e3c4}',
+    '.nkm-ct .ln-set:hover{border-color:#06c755}',
+    '.nkm-ct .ln-edit{flex-shrink:0;background:#fff;border:1px solid #b9e3c4;',
+    'border-radius:99px;padding:6px 12px;font-size:11.5px;font-family:inherit;',
+    'color:#2a7a44;cursor:pointer}',
+    '.nkm-ct .ln-edit:hover{border-color:#06c755;color:#06c755}',
+    '.nkm-ct .ln-none{display:flex;align-items:center;gap:13px;width:100%;',
+    'padding:16px 18px;border-radius:14px;background:#f5f8f6;border:2px dashed #cfdcd4;',
+    'color:#6a7a70;font-family:inherit;text-align:left;cursor:pointer}',
+    '.nkm-ct .ln-none:hover{border-color:#06c755;color:#2a7a44}',
+    '.nkm-ct .ln-none .tx b{display:block;font-size:15px;font-weight:700}',
+    '.nkm-ct .ln-none .tx small{display:block;font-size:11.5px;margin-top:3px}',
     '.nkm-name{text-align:center;font-size:13.5px;color:#5a6a7e;padding:12px 0 2px;line-height:1.8}',
     '.nkm-name b{font-size:16px;color:#2d3a4a}',
 
@@ -217,12 +251,13 @@
         '<a href="mailto:' + MAIL + '?subject=%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B%EF%BC%88nakayoshi%EF%BC%89">',
         '<span class="ic">✉️</span>',
         '<span class="tx"><b>' + MAIL + '</b><small>タップでメールを作成できます</small></span></a>',
+        lineRow(),
       '</div>',
-      '<p class="nkm-name">みんなで遊びましょーの会 nakayoshi<br><b>' + NAME + '</b></p>',
+      '<p class="nkm-name">みんなで遊びましょー nakayoshi<br><b>' + NAME + '</b></p>',
 
       '<h3>こんなときにご連絡ください</h3>',
       '<ul>',
-        '<li>会への参加を希望されるとき</li>',
+        '<li>LINEがつながらないとき</li>',
         '<li>当日の持ち物や集合場所について知りたいとき</li>',
         '<li>お子さまのアレルギーや持病など、事前にお伝えいただきたいことがあるとき</li>',
         '<li>開催の有無を確かめたいとき（天候が心配なとき）</li>',
@@ -239,17 +274,33 @@
     ].join('');
   }
 
+  /* LINEの行。未設定なら設定を促す */
+  function lineRow() {
+    var u = lineUrl();
+    if (u) {
+      return '<a href="' + u + '" target="_blank" rel="noopener" class="ln-set">' +
+        '<span class="ic">💬</span>' +
+        '<span class="tx"><b>LINE</b><small>タップでLINEが開きます</small></span>' +
+        '<button type="button" class="ln-edit" onclick="event.preventDefault();' +
+        'event.stopPropagation();nkmLineEdit()">変更</button></a>';
+    }
+    return '<button type="button" class="ln-none" onclick="nkmLineEdit()">' +
+      '<span class="ic">💬</span>' +
+      '<span class="tx"><b>LINE（未設定）</b>' +
+      '<small>タップしてLINEの宛先を登録できます</small></span></button>';
+  }
+
   /* プライバシーポリシー */
   function privacyHtml() {
     return [
       '<h2><span>🔒</span>プライバシーポリシー</h2>',
       '<p class="lead">お預かりする情報の取り扱いについて</p>',
 
-      '<p>みんなで遊びましょーの会（以下「当会」）は、参加者および',
+      '<p>みんなで遊びましょー（以下「当グループ」）は、参加者および',
       'お問い合わせいただいた方の個人情報を、次のとおり取り扱います。</p>',
 
       '<h3>1. 取得する情報</h3>',
-      '<p>当会が取得するのは、次のものに限ります。</p>',
+      '<p>当グループが取得するのは、次のものに限ります。</p>',
       '<table>',
       '<tr><th>お問い合わせ時</th><td>お名前、電話番号、メールアドレス、お問い合わせの内容</td></tr>',
       '<tr><th>参加申込時</th><td>お名前、連絡先、参加人数、お子さまの年齢、',
@@ -294,7 +345,7 @@
       'お問い合わせ先までご連絡ください。ご本人であることを確認のうえ、対応します。</p>',
 
       '<h3>9. お問い合わせ先</h3>',
-      '<p>みんなで遊びましょーの会 nakayoshi<br>代表　' + NAME + '<br>',
+      '<p>みんなで遊びましょー nakayoshi<br>代表　' + NAME + '<br>',
       '電話　<a href="tel:' + TELR + '" style="color:#c0392b;font-weight:700">' + TEL + '</a><br>',
       'メール　<a href="mailto:' + MAIL + '" style="color:#c0392b;font-weight:700;word-break:break-all">' + MAIL + '</a></p>',
 
@@ -329,7 +380,7 @@
       '<nav class="nkm-panel">' +
         '<div class="nkm-head">' +
           '<span class="ch">🍒</span>' +
-          '<span class="tt"><b>nakayoshi</b><small>みんなで遊びましょーの会</small></span>' +
+          '<span class="tt"><b>nakayoshi</b><small>みんなで遊びましょー</small></span>' +
           '<button class="nkm-x" onclick="nkmClose()" aria-label="閉じる">✕</button>' +
         '</div>' +
 
@@ -337,7 +388,7 @@
         '<a class="nkm-i" href="index.html"><span class="ic">🏠</span>' +
           '<span class="tx">ホーム<small>トップページへ</small></span></a>' +
         '<a class="nkm-i hi" href="nakayoshi.html"><span class="ic">🍒</span>' +
-          '<span class="tx">Let\u2019s play<small>いまの会のご案内</small></span></a>' +
+          '<span class="tx">Let\u2019s play<small>いまの活動のご案内</small></span></a>' +
         '<button class="nkm-i" onclick="nkmOpen(\'nkm-arch\')"><span class="ic">📚</span>' +
           '<span class="tx">アーカイブ<small>これまでの活動の記録</small></span></button>' +
 
@@ -439,6 +490,29 @@
   };
   window.closeM = function (id) {
     closeModal(id === 'mArch' ? 'nkm-arch' : (id === 'mInfo' ? 'nkm-info' : id));
+  };
+
+  /* LINEの宛先を登録・変更する */
+  window.nkmLineEdit = function () {
+    var cur = '';
+    try { cur = localStorage.getItem(LKEY) || ''; } catch (e) {}
+    var v = prompt(
+      'LINEの宛先を入力してください。\n\n' +
+      '・公式アカウントのID（例: @nakayoshi）\n' +
+      '・友だち追加のURL（https://line.me/... など）\n\n' +
+      '空のまま決定すると、登録を消します。',
+      cur);
+    if (v === null) return;                 /* 取り消し */
+    var u = normalizeLine(v);
+    if (v.trim() && !u) { alert('うまく読み取れませんでした。\n@から始まるIDか、httpsで始まるURLを入れてください。'); return; }
+    saveLine(u);
+    var box = document.getElementById('nkm-info');
+    if (box) {
+      var inner = box.querySelector('.nkm-in');
+      if (inner) inner.innerHTML =
+        '<button class="cl" onclick="nkmCloseModal(\'nkm-info\')" aria-label="閉じる">✕</button>' + contactHtml();
+    }
+    toast(u ? 'LINEを登録しました' : 'LINEの登録を消しました');
   };
 
   window.nkmLogout = function () {
