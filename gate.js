@@ -21,6 +21,13 @@
 (function () {
   'use strict';
 
+  /* 読み込まれたことの印。
+     ログイン画面が出ないときは、ブラウザの開発者ツールのコンソールで
+     window.nkGateLoaded と入力して true が返るか確かめてください。
+     false や undefined なら、gate.js が置かれていないか、
+     ファイル名・置き場所が違っています。 */
+  window.nkGateLoaded = true;
+
   var KEY   = 'nk-gate';
   var SALT  = 'nakayoshi-2026';
   /* 合言葉そのものは書かず、照合用の値だけを持たせています */
@@ -66,6 +73,20 @@
   }
   function saveKeep(keep) {
     try { localStorage.setItem(KEY + '-keep', keep ? '1' : '0'); } catch (e) {}
+  }
+
+  /* ログアウト。メニューから呼び出します */
+  window.nkGateLogout = function () {
+    try { localStorage.removeItem(KEY); } catch (e) {}
+    try { sessionStorage.removeItem(KEY); } catch (e) {}
+    location.reload();
+  };
+
+  /* URLの末尾に #logout を付けて開くと、合言葉を入れ直せます */
+  if (location.hash === '#logout') {
+    try { localStorage.removeItem(KEY); } catch (e) {}
+    try { sessionStorage.removeItem(KEY); } catch (e) {}
+    try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
   }
 
   if (passed()) return;
@@ -240,6 +261,8 @@
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', build);
+    /* defer や async で読み込まれ、すでに読み終えていた場合の保険 */
+    window.addEventListener('load', build);
   } else {
     build();
   }

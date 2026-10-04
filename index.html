@@ -87,7 +87,7 @@
   }
 
   /* ====== 画像の下のボタン ====== */
-  .btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0 0}
+  .btns{display:grid;gap:10px;margin:16px 0 0;max-width:340px;margin-left:auto;margin-right:auto}
   .btn{
     display:flex;align-items:center;justify-content:center;gap:7px;
     padding:16px 10px;border:none;border-radius:99px;
@@ -97,14 +97,9 @@
     box-shadow:0 5px 16px rgba(224,58,58,.3);
     transition:filter .15s,transform .15s;
   }
-  .btn.sub{background:#fff;color:#c0392b;border:2px solid #f3b9b9;box-shadow:none}
-  .btn:hover{filter:brightness(1.07)}
+    .btn:hover{filter:brightness(1.07)}
   .btn:active{transform:translateY(1px)}
   .btn:focus-visible{outline:3px solid #2d3a4a;outline-offset:3px}
-  .btn-wide{
-    grid-column:1/-1;background:#fff;color:#4a5a6e;
-    border:2px solid #c9d8ea;box-shadow:none;font-size:14.5px;
-  }
 
   /* ====== ダイアログ ====== */
   .modal{
@@ -176,7 +171,6 @@
   }
 
   @media (max-width:430px){
-    .btns{grid-template-columns:1fr}
     .btn{font-size:15px}
     .modal-in{padding:20px 16px;margin:18px auto}
     .ct .tx b{font-size:15.5px}
@@ -207,11 +201,7 @@
   </div>
 
   <div class="btns">
-    <a class="btn" href="nakayoshi.html">🍒 Let's play</a>
-    <button type="button" class="btn sub" onclick="openM('mArch')">📚 Archive</button>
-    <button type="button" class="btn btn-wide" onclick="openM('mInfo')">
-      ✉️ お問い合わせ・プライバシーポリシー
-    </button>
+    <a class="btn" href="nakayoshi.html">🍒 Let’s play</a>
   </div>
 
   <div class="foot">

@@ -324,6 +324,10 @@
         '<button class="nkm-i" onclick="nkmOpen(\'nkm-app\')"><span class="ic">📲</span>' +
           '<span class="tx">アプリとしてインストール<small>ホーム画面に追加する</small></span></button>' +
 
+        '<div class="nkm-sec">// その他</div>' +
+        '<button class="nkm-i" onclick="nkmLogout()"><span class="ic">🚪</span>' +
+          '<span class="tx">ログアウト<small>合言葉を入れ直します</small></span></button>' +
+
         '<div class="nkm-foot">&copy; 2026 Koji Furutani.<br>All Rights Reserved.</div>' +
       '</nav>';
     document.body.appendChild(ov);
@@ -409,6 +413,17 @@
   };
   window.closeM = function (id) {
     closeModal(id === 'mArch' ? 'nkm-arch' : (id === 'mInfo' ? 'nkm-info' : id));
+  };
+
+  window.nkmLogout = function () {
+    if (!confirm('ログアウトします。次に開くときは合言葉の入力が必要です。')) return;
+    if (typeof window.nkGateLogout === 'function') {
+      window.nkGateLogout();
+    } else {
+      try { localStorage.removeItem('nk-gate'); } catch (e) {}
+      try { sessionStorage.removeItem('nk-gate'); } catch (e) {}
+      location.reload();
+    }
   };
 
   window.nkmInstallNow = function () {
