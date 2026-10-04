@@ -53,10 +53,10 @@
     /* 写真とチラシは元の色のまま見せる */
     'html.nk-dark img{filter:none}',
 
-    /* 文字の大きさ */
-    'html.nk-s{font-size:90%}',
-    'html.nk-m{font-size:100%}',
-    'html.nk-l{font-size:118%}',
+    /* 文字の大きさ
+       このサイトは文字をpxで指定しているため、ルートのfont-sizeを変えても効かない。
+       そこで本文側を丸ごと拡大する。
+       操作部（ツールバー・メニュー・ログイン）は等倍のまま保つ。 */
     '.nk-zoom{zoom:var(--nk-scale,1)}',
     '@supports not (zoom:1){.nk-zoom{transform:scale(var(--nk-scale,1));',
     'transform-origin:top center;width:calc(100% / var(--nk-scale,1));margin-inline:auto}}',
@@ -132,14 +132,45 @@
     }
   }
 
+  /* 拡大の対象にする要素を選ぶ。
+     本文を包んでいるものだけに付け、操作部には付けない */
+  function zoomTargets() {
+    var out = [];
+    var sels = ['body > .wrap', 'body > main', 'body > .fn'];
+    for (var i = 0; i < sels.length; i++) {
+      var ns = document.querySelectorAll(sels[i]);
+      for (var j = 0; j < ns.length; j++) {
+        if (out.indexOf(ns[j]) === -1) out.push(ns[j]);
+      }
+    }
+    /* 見つからないページでは、操作部を除いた body 直下を対象にする */
+    if (!out.length) {
+      var kids = document.body.children;
+      for (var k = 0; k < kids.length; k++) {
+        var e = kids[k];
+        if (e.tagName === 'SCRIPT' || e.tagName === 'STYLE') continue;
+        if (e.id === 'nktBar' || e.id === 'nktToast' || e.id === 'nk-gate') continue;
+        if (e.id === 'nkm-ov' || e.id === 'nkm-btn') continue;
+        if (e.className && String(e.className).indexOf('nkm-') === 0) continue;
+        out.push(e);
+      }
+    }
+    return out;
+  }
+
   function applySize(v) {
     var html = document.documentElement;
     html.classList.remove('nk-s', 'nk-m', 'nk-l');
     html.classList.add('nk-' + v);
     html.style.setProperty('--nk-scale', SIZES[v] || 1);
+
+    /* 本文に拡大の印を付ける */
+    var ts = zoomTargets();
+    for (var i = 0; i < ts.length; i++) ts[i].classList.add('nk-zoom');
+
     var bs = document.querySelectorAll('.nkt-sz button');
-    for (var i = 0; i < bs.length; i++) {
-      bs[i].classList.toggle('on', bs[i].getAttribute('data-s') === v);
+    for (var j = 0; j < bs.length; j++) {
+      bs[j].classList.toggle('on', bs[j].getAttribute('data-s') === v);
     }
     try { window.dispatchEvent(new Event('resize')); } catch (e) {}
   }
@@ -257,6 +288,7 @@
     var sz = getSize();
     html.classList.add('nk-' + sz);
     html.style.setProperty('--nk-scale', SIZES[sz] || 1);
+    /* 要素への印付けは、画面ができてから applySize で行う */
   })();
 
   if (document.readyState === 'loading') {
