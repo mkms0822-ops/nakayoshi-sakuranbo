@@ -1,7 +1,7 @@
 {
-  "name": "nakayoshi｜みんなで遊びましょーの会",
+  "name": "nakayoshi｜みんなで遊びましょー",
   "short_name": "nakayoshi",
-  "description": "全力で思いっきり遊ぼうね。みんなで遊びましょーの会 nakayoshi。",
+  "description": "全力で思いっきり遊ぼうね。みんなで遊びましょー nakayoshi。",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
