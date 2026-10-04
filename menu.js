@@ -218,15 +218,16 @@
         '<span class="ic">✉️</span>',
         '<span class="tx"><b>' + MAIL + '</b><small>タップでメールを作成できます</small></span></a>',
       '</div>',
-      '<p class="nkm-name">みんなで遊びましょーの会 nakayoshi<br><b>' + NAME + '</b></p>',
+      '<p class="nkm-name">みんなで遊びましょー nakayoshi<br><b>' + NAME + '</b></p>',
 
       '<h3>こんなときにご連絡ください</h3>',
       '<ul>',
-        '<li>会への参加を希望されるとき</li>',
+        '<li>あそびへの参加を希望されるとき</li>',
         '<li>当日の持ち物や集合場所について知りたいとき</li>',
-        '<li>お子さまのアレルギーや持病など、事前にお伝えいただきたいことがあるとき</li>',
+        '<li>お子さまのアレルギーや持病など、事前にお伝えいただくことがあるとき</li>',
         '<li>開催の有無を確かめたいとき（天候が心配なとき）</li>',
         '<li>写真の掲載について、ご相談があるとき</li>',
+        '<li>LINEで連絡がつかない時</li>',
       '</ul>',
       '<p class="note">お電話が出られないことがあります。',
       'その場合はメールをいただければ、折り返しご連絡します。</p>',
@@ -245,11 +246,11 @@
       '<h2><span>🔒</span>プライバシーポリシー</h2>',
       '<p class="lead">お預かりする情報の取り扱いについて</p>',
 
-      '<p>みんなで遊びましょーの会（以下「当会」）は、参加者および',
+      '<p>みんなで遊びましょー（以下「グループ」）は、参加者および',
       'お問い合わせいただいた方の個人情報を、次のとおり取り扱います。</p>',
 
       '<h3>1. 取得する情報</h3>',
-      '<p>当会が取得するのは、次のものに限ります。</p>',
+      '<p>グループが取得するのは、次のものに限ります。</p>',
       '<table>',
       '<tr><th>お問い合わせ時</th><td>お名前、電話番号、メールアドレス、お問い合わせの内容</td></tr>',
       '<tr><th>参加申込時</th><td>お名前、連絡先、参加人数、お子さまの年齢、',
@@ -294,7 +295,7 @@
       'お問い合わせ先までご連絡ください。ご本人であることを確認のうえ、対応します。</p>',
 
       '<h3>9. お問い合わせ先</h3>',
-      '<p>みんなで遊びましょーの会 nakayoshi<br>代表　' + NAME + '<br>',
+      '<p>みんなで遊びましょー nakayoshi<br>代表　' + NAME + '<br>',
       '電話　<a href="tel:' + TELR + '" style="color:#c0392b;font-weight:700">' + TEL + '</a><br>',
       'メール　<a href="mailto:' + MAIL + '" style="color:#c0392b;font-weight:700;word-break:break-all">' + MAIL + '</a></p>',
 
@@ -329,7 +330,7 @@
       '<nav class="nkm-panel">' +
         '<div class="nkm-head">' +
           '<span class="ch">🍒</span>' +
-          '<span class="tt"><b>nakayoshi</b><small>みんなで遊びましょーの会</small></span>' +
+          '<span class="tt"><b>nakayoshi</b><small>みんなで遊びましょー</small></span>' +
           '<button class="nkm-x" onclick="nkmClose()" aria-label="閉じる">✕</button>' +
         '</div>' +
 
@@ -337,7 +338,7 @@
         '<a class="nkm-i" href="index.html"><span class="ic">🏠</span>' +
           '<span class="tx">ホーム<small>トップページへ</small></span></a>' +
         '<a class="nkm-i hi" href="nakayoshi.html"><span class="ic">🍒</span>' +
-          '<span class="tx">Let\u2019s play<small>いまの会のご案内</small></span></a>' +
+          '<span class="tx">Let\u2019s play<small>いまのグループのご案内</small></span></a>' +
         '<button class="nkm-i" onclick="nkmOpen(\'nkm-arch\')"><span class="ic">📚</span>' +
           '<span class="tx">アーカイブ<small>これまでの活動の記録</small></span></button>' +
 
