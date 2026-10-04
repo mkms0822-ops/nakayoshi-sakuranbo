@@ -217,10 +217,10 @@
         '<span class="ic">✉️</span>',
         '<span class="tx"><b>' + MAIL + '</b><small>タップでメールを作成できます</small></span></a>',
       '</div>',
-      '<p class="nkm-name">みんなで遊びましょーの会 nakayoshi<br><b>' + NAME + '</b></p>',
+      '<p class="nkm-name">みんなで遊びましょー nakayoshi<br><b>' + NAME + '</b></p>',
 
       '<h3>プライバシーポリシー</h3>',
-      '<p>みんなで遊びましょーの会（以下「当会」）は、参加者および',
+      '<p>みんなで遊びましょー（以下「当会」）は、参加者および',
       'お問い合わせいただいた方の個人情報を、次のとおり取り扱います。</p>',
 
       '<h3>1. 取得する情報</h3>',
@@ -246,8 +246,7 @@
       '速やかに取り下げます。上記の連絡先までお知らせください。</p>',
 
       '<h3>4. 第三者への提供</h3>',
-      '<p>ご本人の同意なく、第三者へ提供することはありません。ただし次の場合を除きます。</p>',
-      '<ul><li>法令にもとづく開示を求められた場合</li>',
+      '<p>ご本人の同意なく、第三者へ提供することはありません。</p>',
       '<li>生命や身体に危険が及ぶおそれがあり、ご本人の同意を得ることが難しい場合',
       '（救急搬送時に、医療機関へ持病やアレルギーをお伝えする場合など）</li></ul>',
 
@@ -266,10 +265,10 @@
 
       '<h3>8. 開示・訂正・削除のご希望</h3>',
       '<p>ご自身の情報について、内容の確認、訂正、削除をご希望の場合は、',
-      '上記の連絡先までご連絡ください。ご本人であることを確認のうえ、対応します。</p>',
+      '上記の連絡先までご連絡ください。対応します。</p>',
 
       '<h3>9. お問い合わせ先</h3>',
-      '<p>みんなで遊びましょーの会 nakayoshi<br>代表　' + NAME + '<br>',
+      '<p>みんなで遊びましょー nakayoshi<br>代表　' + NAME + '<br>',
       '電話　<a href="tel:' + TELR + '" style="color:#c0392b;font-weight:700">' + TEL + '</a><br>',
       'メール　<a href="mailto:' + MAIL + '" style="color:#c0392b;font-weight:700;word-break:break-all">' + MAIL + '</a></p>',
 
@@ -304,7 +303,7 @@
       '<nav class="nkm-panel">' +
         '<div class="nkm-head">' +
           '<span class="ch">🍒</span>' +
-          '<span class="tt"><b>nakayoshi</b><small>みんなで遊びましょーの会</small></span>' +
+          '<span class="tt"><b>nakayoshi</b><small>みんなで遊びましょー</small></span>' +
           '<button class="nkm-x" onclick="nkmClose()" aria-label="閉じる">✕</button>' +
         '</div>' +
 
