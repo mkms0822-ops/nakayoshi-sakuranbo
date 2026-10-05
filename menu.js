@@ -158,6 +158,46 @@
     '.nkm-ct .tx{flex:1;min-width:0}',
     '.nkm-ct .tx b{display:block;font-size:17px;font-weight:700;word-break:break-all}',
     '.nkm-ct .tx small{display:block;font-size:11.5px;color:#8c7070;margin-top:3px}',
+    /* LINEの追加方法 */
+    '.ln-howto{margin:12px 0 0;font-size:13px;text-align:center}',
+    '.ln-howto a{color:#06935f;font-weight:700;text-decoration:underline;',
+    'text-underline-offset:3px;cursor:pointer}',
+    '.ln-howto a:hover{color:#047a4e}',
+    '.ln-howto .hint{display:block;font-size:11px;color:#9aa8b8;margin-top:3px}',
+    '.ln-guide{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.4,0,.2,1)}',
+    '.ln-guide.open{max-height:3400px;margin-top:14px}',
+    '.ln-tabs{display:flex;gap:6px;margin-bottom:12px}',
+    '.ln-tab{flex:1;padding:11px 6px;border:1.5px solid #dbe6f1;border-radius:11px;',
+    'background:#fff;color:#4a5a6e;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer}',
+    '.ln-tab:hover{border-color:#06c755}',
+    '.ln-tab.on{background:#06935f;border-color:#06935f;color:#fff}',
+    '.ln-tab:focus-visible{outline:3px solid #06c755;outline-offset:2px}',
+    '.ln-pane{display:none}.ln-pane.on{display:block}',
+    '.ln-lead{font-size:13px;color:#6a7a8a;line-height:1.85;margin-bottom:14px}',
+    '.ln-step{display:flex;gap:11px;margin-bottom:14px}',
+    '.ln-sn{width:26px;height:26px;flex-shrink:0;border-radius:50%;background:#06935f;',
+    'color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;',
+    'justify-content:center;margin-top:1px}',
+    '.ln-sb{flex:1;min-width:0}',
+    '.ln-st{font-size:13.5px;line-height:1.85;color:#2d3a4a}',
+    '.ln-fig{margin-top:9px}',
+    /* 画面の絵（文字だけで描くので、画像の読み込みが要りません） */
+    '.ph{border:2px solid #cfd9e4;border-radius:13px;overflow:hidden;background:#fff;',
+    'max-width:260px;box-shadow:0 3px 10px rgba(60,90,130,.1)}',
+    '.ph-top{background:#eef3f8;padding:8px 11px;font-size:11.5px;font-weight:700;',
+    'color:#5a6a7e;border-bottom:1px solid #dfe7ef;text-align:center}',
+    '.ph-body{padding:6px}',
+    '.ph-row{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:8px;',
+    'font-size:12.5px;color:#4a5a6e;line-height:1.5}',
+    '.ph-row.hi{background:#e8f8ef;color:#046b44;font-weight:700;',
+    'box-shadow:inset 0 0 0 1.5px #06c755}',
+    '.ph-ic{font-size:15px;flex-shrink:0;width:22px;text-align:center}',
+    '.ph-cap{font-size:11px;color:#9aa8b8;margin-top:5px}',
+    '.ln-note{font-size:12.5px;line-height:1.9;color:#5a6a7e;background:#f5faf7;',
+    'border:1px solid #cfe8da;border-radius:11px;padding:12px 14px;margin-top:4px}',
+    '.ln-note code{background:#fff;border:1px solid #d8e6de;border-radius:5px;',
+    'padding:1px 6px;font-size:11.5px;word-break:break-all}',
+    '.ln-note b{color:#c0392b}',
     '.nkm-ct .ln-set{position:relative;background:#eefaf0;border-color:#b9e3c4}',
     '.nkm-ct .ln-set:hover{border-color:#06c755}',
     '.nkm-ct .ln-edit{flex-shrink:0;background:#fff;border:1px solid #b9e3c4;',
@@ -253,6 +293,9 @@
         '<span class="tx"><b>' + MAIL + '</b><small>タップでメールを作成できます</small></span></a>',
         lineRow(),
       '</div>',
+      '<p class="ln-howto"><a href="#" onclick="return nkmLineHow()">追加方法はこちら</a>' +
+      '<span class="hint">　LINEのURLの調べ方を図でご案内します</span></p>',
+      '<div class="ln-guide" id="lnGuide">' + lineGuideHtml() + '</div>',
       '<p class="nkm-name">みんなで遊びましょー nakayoshi<br><b>' + NAME + '</b></p>',
 
       '<h3>こんなときにご連絡ください</h3>',
@@ -288,6 +331,86 @@
       '<span class="ic">💬</span>' +
       '<span class="tx"><b>LINE（未設定）</b>' +
       '<small>タップしてLINEの宛先を登録できます</small></span></button>';
+  }
+
+  /* LINEのURLの調べ方。図は文字だけで描いているので、画像の読み込みは不要 */
+  function phone(title, rows, cap) {
+    var h = '<div class="ph"><div class="ph-top">' + title + '</div><div class="ph-body">';
+    for (var i = 0; i < rows.length; i++) {
+      var r = rows[i];
+      h += '<div class="ph-row' + (r[2] ? ' hi' : '') + '">' +
+           '<span class="ph-ic">' + r[0] + '</span><span>' + r[1] + '</span></div>';
+    }
+    h += '</div></div>';
+    if (cap) h += '<div class="ph-cap">' + cap + '</div>';
+    return h;
+  }
+
+  function lineGuideHtml() {
+    var h = '';
+
+    h += '<div class="ln-tabs">' +
+      '<button type="button" class="ln-tab on" onclick="nkmLineTab(\'me\',this)">👤 個人のLINE</button>' +
+      '<button type="button" class="ln-tab" onclick="nkmLineTab(\'gr\',this)">👥 グループLINE</button>' +
+      '</div>';
+
+    /* --- 個人 --- */
+    h += '<div class="ln-pane on" id="lnPaneMe">' +
+      '<p class="ln-lead">自分のLINEに直接つないでもらうURLです。' +
+      'iPhone・Androidとも手順は同じです。</p>' +
+
+      stepRow(1, 'LINEを開いて、<b>ホーム</b>の右上にある<b>人型のアイコン</b>をタップ',
+        phone('ホーム', [['🔍', '検索'], ['👤＋', '友だち追加　← ここ', 1], ['⚙️', '設定']])) +
+
+      stepRow(2, '<b>QRコード</b>をタップ',
+        phone('友だち追加', [['📷', 'QRコード　← ここ', 1], ['🔗', '招待'], ['🔢', '検索']])) +
+
+      stepRow(3, '<b>マイQRコード</b>をタップ',
+        phone('QRコード', [['⬜', 'カメラが開きます'], ['🪪', 'マイQRコード　← ここ', 1]])) +
+
+      stepRow(4, '<b>シェア</b>（共有）をタップして、<b>リンクをコピー</b>を選ぶ',
+        phone('マイQRコード', [['▦', '自分のQRコード'], ['📤', 'シェア　← ここ', 1],
+                              ['🔗', 'リンクをコピー', 1]])) +
+
+      stepRow(5, '上の<b>「LINE（未設定）」</b>をタップして、コピーしたURLを貼り付け', '') +
+
+      '<div class="ln-note">コピーされるのは <code>https://line.me/ti/p/〜</code> ' +
+      'のような文字列です。これをそのまま貼り付けてください。<br>' +
+      '公式アカウントをお持ちなら、<code>@</code> から始まるIDだけでも大丈夫です。</div>' +
+      '</div>';
+
+    /* --- グループ --- */
+    h += '<div class="ln-pane" id="lnPaneGr">' +
+      '<p class="ln-lead">グループに直接参加してもらうURLです。' +
+      '参加希望の方をまとめて迎えたいときに向いています。</p>' +
+
+      stepRow(1, '<b>グループのトーク画面</b>を開いて、右上の<b>≡</b>（メニュー）をタップ',
+        phone('みんなで遊びましょー', [['💬', 'トークの画面'], ['≡', 'メニュー　← ここ', 1]])) +
+
+      stepRow(2, '<b>招待</b>をタップ',
+        phone('グループ', [['👥', 'メンバー'], ['➕', '招待　← ここ', 1], ['🖼', 'アルバム']])) +
+
+      stepRow(3, '<b>招待リンク</b>（またはリンクで招待）を選ぶ',
+        phone('招待方法', [['🔗', '招待リンク　← ここ', 1], ['📷', 'QRコード'], ['🆔', 'LINE ID']])) +
+
+      stepRow(4, '表示されたURLを<b>コピー</b>',
+        phone('招待リンク', [['🔗', 'https://line.me/ti/g/〜'], ['📋', 'コピー　← ここ', 1]])) +
+
+      stepRow(5, '上の<b>「LINE（未設定）」</b>をタップして、コピーしたURLを貼り付け', '') +
+
+      '<div class="ln-note">コピーされるのは <code>https://line.me/ti/g/〜</code> ' +
+      'のような文字列です。<br>' +
+      '<b>ご注意：</b>このURLを知っている人は誰でもグループに入れます。' +
+      '公開する範囲にはご配慮ください。リンクは設定から作り直すこともできます。</div>' +
+      '</div>';
+
+    return h;
+  }
+
+  function stepRow(n, txt, fig) {
+    return '<div class="ln-step"><div class="ln-sn">' + n + '</div>' +
+           '<div class="ln-sb"><div class="ln-st">' + txt + '</div>' +
+           (fig ? '<div class="ln-fig">' + fig + '</div>' : '') + '</div></div>';
   }
 
   /* プライバシーポリシー */
@@ -493,6 +616,27 @@
   };
 
   /* LINEの宛先を登録・変更する */
+  window.nkmLineHow = function () {
+    var g = document.getElementById('lnGuide');
+    var a = document.querySelector('.ln-howto a');
+    if (!g) return false;
+    var open = !g.classList.contains('open');
+    g.classList.toggle('open', open);
+    if (a) a.textContent = open ? '追加方法を閉じる' : '追加方法はこちら';
+    if (open) setTimeout(function () {
+      g.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 150);
+    return false;
+  };
+
+  window.nkmLineTab = function (k, btn) {
+    document.getElementById('lnPaneMe').classList.toggle('on', k === 'me');
+    document.getElementById('lnPaneGr').classList.toggle('on', k === 'gr');
+    var bs = document.querySelectorAll('.ln-tab');
+    for (var i = 0; i < bs.length; i++) bs[i].classList.remove('on');
+    if (btn) btn.classList.add('on');
+  };
+
   window.nkmLineEdit = function () {
     var cur = '';
     try { cur = localStorage.getItem(LKEY) || ''; } catch (e) {}
