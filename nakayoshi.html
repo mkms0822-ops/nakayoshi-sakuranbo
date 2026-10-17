@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <script src="gate.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>nakayoshi｜みんなで遊びましょー（京都市立丹波自然運動公園 編）</title>
+<title>nakayoshi｜みんなで遊びましょー（京都府立丹波自然運動公園 編）</title>
 <meta name="description" content="2026年10月18日（日）京都府立丹波自然運動公園で開催。子供たちと遊んで遊んで遊びまくる一日。園内マップと利用Q&Aもご確認ください。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="nakayoshi｜みんなで遊びましょー">
@@ -235,6 +235,18 @@
   .sub .tx small{display:block;font-size:11.5px;font-weight:400;color:#a9793f;margin-top:2px}
   .sub .go{font-size:12px;color:#c08b4a;flex-shrink:0}
 
+
+  /* ====== お弁当のお知らせ・マルシェ ====== */
+  .bento{
+    display:flex;gap:11px;align-items:flex-start;
+    margin:0 0 22px;padding:14px 16px;
+    background:#fff;border:2px solid #f6c38a;border-radius:14px;
+    font-size:14px;line-height:1.8;color:#2b3a1c;
+  }
+  .bento .ic{font-size:24px;flex-shrink:0;line-height:1.4}
+  .bento b{display:block;color:#8a4a08;margin-bottom:2px}
+  .bento a{color:#c0560a;font-weight:700}
+
   /* ====== 下部 ====== */
   .foot{
     text-align:center;padding:26px 14px 10px;
@@ -279,7 +291,7 @@
   <div class="sheet" id="sh1">
     <div class="sheet-in">
       <img src="nakayoshi-1.jpg"
-           alt="nakayoshi 京都市立丹波自然運動公園 編。決行日 2026年10月18日（日）。集合9時〜10時、解散16時〜17時。小雨は決行、雨量が多い予報なら亀岡サンガスタジアム室内遊戯施設KIRInokoへ変更（他の行先への変更も可能）。持ち物は飲み物・昼食・お菓子・レジャーシート・絆創膏・雨具など。">
+           alt="nakayoshi 京都府立丹波自然運動公園 編。決行日 2026年10月18日（日）。集合9時〜10時、解散16時〜17時。小雨は決行、雨量が多い予報なら亀岡サンガスタジアム室内遊戯施設KIRInokoへ変更（他の行先への変更も可能）。持ち物は飲み物・昼食（本日はマルシェが開催されるので、お弁当持参がなくても大丈夫）・お菓子・レジャーシート・絆創膏・雨具など。">
       <button type="button" class="hot park" onclick="togglePark()"
               aria-label="丹波自然運動公園のサイトを開く">丹波自然運動公園サイト</button>
       <a class="hot kiri" href="https://kirinoko.com/" target="_blank" rel="noopener"
@@ -320,6 +332,13 @@
     </div>
   </div>
 
+
+  <!-- お弁当のお知らせ（持ち物の昼食について） -->
+  <div class="bento" id="bento">
+    <span class="ic">🍱</span>
+    <div><b>お弁当について</b>本日10月18日はマルシェが開催されます。食べ物屋さんが沢山出店されますので、お弁当持参が無くても大丈夫です。<br><a href="#sh4">▼ 京丹波マルシェの案内・出店マップ</a></div>
+  </div>
+
   <!-- 2枚目：園内マップ（施設名をタップすると公園の公式ページが開きます） -->
   <div class="sheet" id="sh2">
     <div class="sheet-in">
@@ -351,6 +370,40 @@
       <img src="nakayoshi-3.jpg" loading="lazy"
            alt="園内利用Q&A。テントは1.8m×1.8m×高さ1.5m程度の日避け用なら設置可能。お弁当の持ち込みは可、ゴミは持ち帰り。こどもの広場とアスレチックは徒歩約10分。開園時間は4月〜9月が8時〜18時、10月〜3月が9時〜17時。休園日は12月29日〜1月3日。">
     </div>
+  </div>
+
+  <!-- 4枚目：京丹波マルシェ（園内利用Q&Aの下） -->
+  <div class="sheet" id="sh4">
+<section id="mcRoot" class="mc" aria-label="京丹波マルシェ2026">
+<style>
+#mcRoot{--mc-ink:#2b3a1c;--mc-sub:#6a7a58;--mc-red:#f07d1a;--mc-card:#fff;--mc-line:#e3ead4;margin:0;padding:20px 16px;background:var(--mc-card);border-radius:18px;color:var(--mc-ink);box-shadow:0 10px 34px rgba(40,60,20,.18);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;line-height:1.8}
+#mcRoot h3{font-size:19px;margin:0 0 4px}#mcRoot .mc-sub{font-size:12.5px;color:var(--mc-sub);margin-bottom:12px}
+#mcRoot p{font-size:14px;margin:8px 0}#mcRoot .mc-info{background:#f3f7ea;border-radius:12px;padding:10px 14px;font-size:13.5px}
+#mcRoot .mc-btns{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+#mcRoot a.mc-btn{display:inline-flex;align-items:center;gap:6px;padding:12px 16px;border-radius:99px;background:var(--mc-red);color:#fff;font-weight:700;font-size:14px;text-decoration:none}
+#mcRoot a.mc-btn.sub{background:#fff;color:var(--mc-red);border:2px solid #f6c38a;color:#8a4a08}
+#mcRoot img.mc-map{width:100%;height:auto;display:block;border-radius:12px;margin:12px 0 4px}
+#mcRoot .mc-cap{font-size:11.5px;color:var(--mc-sub)}
+#mcRoot .mc-g{font-size:14px;margin:18px 0 6px;padding-left:8px;border-left:4px solid #d9452b}
+#mcRoot .mc-g.mc-brown{border-color:#8b5e3c}#mcRoot .mc-g.mc-blue{border-color:#2f7fd0}#mcRoot .mc-g.mc-green{border-color:#1f7a4a}
+#mcRoot ul.mc-l{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:6px 12px}
+#mcRoot ul.mc-l li{display:flex;align-items:center;gap:8px;min-width:0;font-size:13.5px;padding:6px 0;border-bottom:1px dashed var(--mc-line)}
+#mcRoot .mc-n{flex:none;min-width:26px;height:26px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:12px;font-weight:700;background:#d9452b}
+#mcRoot .mc-n.brown{background:#8b5e3c}#mcRoot .mc-n.blue{background:#2f7fd0}#mcRoot .mc-n.green{background:#1f7a4a}
+#mcRoot ul.mc-l a{flex:1;min-width:0;color:var(--mc-ink);overflow-wrap:anywhere;text-decoration:underline;text-decoration-color:#b9c7d8;text-underline-offset:3px}
+#mcRoot .mc-t{flex:none;font-size:10.5px;border-radius:5px;padding:0 6px;border:1px solid var(--mc-line);color:var(--mc-sub)}
+#mcRoot .mc-t.of{color:#1f7a4a;border-color:#9fd3b6}
+#mcRoot .mc-note{font-size:12px;color:var(--mc-sub);margin-top:14px}
+</style>
+<h3>🍴 京丹波マルシェ2026</h3>
+<div class="mc-sub">本日 10月18日(日)開催 ／ 会場は、遊びに来た丹波自然運動公園の「こどもの広場」です</div>
+<div class="mc-info"><b>日時</b> 2026年10月18日(日)10:00〜15:00(雨天決行・荒天中止)<br><b>会場</b> 京都府立丹波自然運動公園 こどもの広場</div>
+<p><b>京丹波マルシェ2026、開催決定!</b> 京丹波町の魅力「食」を発信するイベントです。京丹波町の農産物や特産品の魅力を広く発信し、町内外の交流人口を増加させるとともに、地域産業の振興、住民の誇りと愛着の醸成を図ることを目的としています。9月18日から11月8日まで開催の「第43回全国都市緑化フェア in 京都丹波」を盛り上げる、京丹波町内最大のイベントとして実施されます。</p>
+<div class="mc-btns"><a class="mc-btn" href="https://www.kyotamba.org/kyotamba-marche/" target="_blank" rel="noopener">マルシェの公式ページ ↗</a><a class="mc-btn sub" href="https://www.kyotamba.org/kyotamba-marche/img/kyotamba-marche2026.pdf" target="_blank" rel="noopener">出店マップ(PDF) ↗</a></div>
+<img class="mc-map" src="marche-map.jpg" alt="京丹波マルシェ2026 会場MAP(参考図)。飲食ブース1〜23・37、ゲスト出店24〜26、物販・体験27〜35、全国都市緑化フェア36" loading="lazy">
+<div class="mc-cap">参考図:京丹波マルシェ2026の会場MAPをもとに作成した画像です。正確なブース配置は、上の「出店マップ(PDF)」でご確認ください。</div>
+<h4 class="mc-g mc-red">🍴 飲食ブース</h4><ul class="mc-l"><li><span class="mc-n red">1</span><a href="https://www.google.com/search?q=%E4%BA%AC%E9%83%BD%E5%BA%9C%E7%AB%8B%E9%A0%88%E7%9F%A5%E9%AB%98%E7%AD%89%E5%AD%A6%E6%A0%A1%20%E4%BA%AC%E4%B8%B9%E6%B3%A2" target="_blank" rel="noopener">京都府立須知高等学校</a><span class="mc-t sr">検索</span></li><li><span class="mc-n red">2</span><a href="https://www.google.com/search?q=%E5%B9%B8%E7%94%B0%E7%94%BA%E7%89%A9%E7%94%A3%E5%B1%95%20%E4%BA%AC%E4%B8%B9%E6%B3%A2" target="_blank" rel="noopener">幸田町物産展</a><span class="mc-t sr">検索</span></li><li><span class="mc-n red">3</span><a href="https://www.google.com/search?q=MADOI%20%E4%BA%AC%E4%B8%B9%E6%B3%A2" target="_blank" rel="noopener">MADOI</a><span class="mc-t sr">検索</span></li><li><span class="mc-n red">4</span><a href="https://www.google.com/search?q=bio%20sweet%27s%20capocapo%E8%8F%93%E6%AD%A9%E8%8F%93%E6%AD%A9%20%E4%BA%AC%E4%B8%B9%E6%B3%A2" target="_blank" rel="noopener">bio sweet&#x27;s capocapo菓歩菓歩</a><span class="mc-t sr">検索</span></li><li><span class="mc-n red">5</span><a href="https://www.google.com/search?q=%E9%81%93%E3%81%AE%E9%A7%85%20%E7%91%9E%E7%A9%82%E3%81%AE%E9%87%8C%E3%83%BB%E3%81%95%E3%82%89%E3%81%B3%E3%81%8D%20%E4%BA%AC%E4%B8%B9%E6%B3%A2" target="_blank" rel="noopener">道の駅 瑞穂の里・さらびき</a><span class="mc-t sr">検索</span></li><li><span class="mc-n red">6</span><a href="https://www.google.com/search?q=%E4%B8%B9%E6%B3%A2%E3%83%AF%E3%82%A4%E3%83%B3%E3%83%8F%E3%82%A6%E3%82%B9%20%E4%BA%AC%E4%B8%B9%E6%B3%A2" target="_blank" rel="noopener">丹波ワインハウス</a><span class="mc-t sr">検索</span></li><li><span class="mc-n red">7</span><a href="https://www.google.com/search?q=%E3%83%8B%E3%82%B3%E3%82%B5%E3%83%B3%E3%82%AB%E3%83%95%E3%82%A7%20%E4%BA%AC%E4%B8%B9%E6%B3%A2" target="_blank" rel="noopener">ニコサンカフェ</a><span class="mc-t sr">検索</span></li><li><span class="mc-n red">8</span><a href="https://www.google.com/search?q=%E3%81%9D%E3%81%AD%E3%81%A3%E3%81%A8%20%E4%BA%AC%E4%B8%B9%E6%B3%A2" target="_blank" rel="noopener">そねっと</a><span class="mc-t sr">検索</span></li><li><span class="mc-n red">9</span><a href="https://www.google.com/search?q=%E4%BB%8A%E5%B7%9D%E8%BE%B2%E5%9C%92%20%E4%BA%AC%E4%B8%B9%E6%B3%A2" target="_blank" rel="noopener">今川農園</a><span class="mc-t sr">検索</span></li><li><span class="mc-n red">10</span><a href="https://www.google.com/search?q=%E3%82%8A%E3%82%93%E3%81%94%E5%B0%82%E9%96%80%E5%BA%97%E3%83%9D%E3%83%A0de%E3%81%AA%E3%81%A3%E3%81%B7%E3%82%8B%20%E4%BA%AC%E4%B8%B9%E6%B3%A2" target="_blank" rel="noopener">りんご専門店ポムdeなっぷる</a><span class="mc-t sr">検索</span></li><li><span class="mc-n red">11</span><a href="https://www.google.com/search?q=%E3%83%91%E3%83%B3%E5%B7%A5%E6%88%BFconanel%20%E4%BA%AC%E4%B8%B9%E6%B3%A2" target="_blank" rel="noopener">パン工房conanel</a><span class="mc-t sr">検索</span></li><li><span class="mc-n red">12</span><a href="https://www.google.com/search?q=2%E7%95%AA%E7%9B%AE%E3%81%AE%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%20%E4%BA%AC%E4%B8%B9%E6%B3%A2" target="_blank" rel="noopener">2番目のテーブル</a><span class="mc-t sr">検索</span></li><li><span class="mc-n red">13</span><a href="https://www.google.com/search?q=%E9%81%93%E3%81%AE%E9%A7%85%E3%80%8C%E5%92%8C%E3%80%8D%20%E4%BA%AC%E4%B8%B9%E6%B3%A2" target="_blank" rel="noopener">道の駅「和」</a><span class="mc-t sr">検索</span></li><li><span class="mc-n red">14</span><a href="https://www.google.com/search?q=%E7%AC%91%E6%A5%BD%C3%97%E3%83%94%E3%82%B0%E3%83%AC%E3%83%83%E3%83%84%20%E4%BA%AC%E4%B8%B9%E6%B3%A2" target="_blank" rel="noopener">笑楽×ピグレッツ</a><span class="mc-t sr">検索</span></li><li><span class="mc-n red">15</span><a href="https://r.goope.jp/danmome/" target="_blank" rel="noopener">焚き火カフェとお宿DANMOME</a><span class="mc-t of">案内ページ</span></li><li><span class="mc-n red">16</span><a href="https://www.google.com/search?q=%E4%BA%AC%E4%B8%B9%E6%B3%A2%E6%A0%97%E5%B7%A5%E6%88%BF%20%E4%BA%AC%E4%B8%B9%E6%B3%A2" target="_blank" rel="noopener">京丹波栗工房</a><span class="mc-t sr">検索</span></li><li><span class="mc-n red">17</span><a href="https://www.google.com/search?q=%E5%8F%A4%E6%B0%91%E5%AE%B6%E3%82%A4%E3%82%BF%E3%83%AA%E3%82%A2%E3%83%B3giggi%20%E4%BA%AC%E4%B8%B9%E6%B3%A2" target="_blank" rel="noopener">古民家イタリアンgiggi</a><span class="mc-t sr">検索</span></li><li><span class="mc-n red">18</span><a href="https://www.google.com/search?q=%E7%84%A1%E5%8F%8C%E5%BF%83%20%E4%BA%AC%E4%B8%B9%E6%B3%A2" target="_blank" rel="noopener">無双心</a><span class="mc-t sr">検索</span></li><li><span class="mc-n red">19</span><a href="https://www.google.com/search?q=%E4%BA%AC%E4%B8%B9%E6%B3%A2%E3%81%88%E3%81%A0%E3%81%BE%E3%82%81%E3%83%95%E3%82%A1%E3%83%BC%E3%83%A0%20%E4%BA%AC%E4%B8%B9%E6%B3%A2" target="_blank" rel="noopener">京丹波えだまめファーム</a><span class="mc-t sr">検索</span></li><li><span class="mc-n red">20</span><a href="https://www.google.com/search?q=%E8%BE%B2%E9%83%BD%20%E4%BA%AC%E4%B8%B9%E6%B3%A2" target="_blank" rel="noopener">農都</a><span class="mc-t sr">検索</span></li><li><span class="mc-n red">21</span><a href="https://www.google.com/search?q=%E3%81%AA%E3%81%8A%E9%81%93%20%E4%BA%AC%E4%B8%B9%E6%B3%A2" target="_blank" rel="noopener">なお道</a><span class="mc-t sr">検索</span></li><li><span class="mc-n red">22</span><a href="https://www.google.com/search?q=Kyotanba%20famer%27s%20kitchen%20Piglet%27s%20%E4%BA%AC%E4%B8%B9%E6%B3%A2" target="_blank" rel="noopener">Kyotanba famer&#x27;s kitchen Piglet&#x27;s</a><span class="mc-t sr">検索</span></li><li><span class="mc-n red">23</span><a href="https://www.google.com/search?q=%E3%83%88%E3%83%9F%E3%83%BC%E3%82%BF%E3%82%A4%E3%83%A4%E3%82%AD%20%E4%BA%AC%E4%B8%B9%E6%B3%A2" target="_blank" rel="noopener">トミータイヤキ</a><span class="mc-t sr">検索</span></li><li><span class="mc-n red">37</span><a href="https://www.google.com/search?q=%E4%BA%AC%E4%B8%B9%E6%B3%A2%E3%81%BF%E3%81%9A%E3%81%BB%E3%83%95%E3%82%A1%E3%83%BC%E3%83%A0%20%E4%BA%AC%E4%B8%B9%E6%B3%A2" target="_blank" rel="noopener">京丹波みずほファーム</a><span class="mc-t sr">検索</span></li></ul><h4 class="mc-g mc-brown">🥐 ゲスト出店(地図では茶色の番号)</h4><ul class="mc-l"><li><span class="mc-n brown">24</span><a href="https://www.google.com/search?q=%E9%81%93%E3%81%AE%E9%A7%85%E3%80%8C%E5%92%8C%E3%80%8D%20%E4%BA%AC%E4%B8%B9%E6%B3%A2" target="_blank" rel="noopener">道の駅「和」(京丹波町)</a><span class="mc-t sr">検索</span></li><li><span class="mc-n brown">25</span><a href="https://www.google.com/search?q=%E6%81%B5%E9%82%A3%E5%B7%9D%E4%B8%8A%E5%B1%8B%20%E4%BA%AC%E4%B8%B9%E6%B3%A2" target="_blank" rel="noopener">恵那川上屋(岐阜県恵那市)</a><span class="mc-t sr">検索</span></li><li><span class="mc-n brown">26</span><a href="https://www.google.com/search?q=%E5%9B%9B%E4%B8%87%E5%8D%81%E3%83%89%E3%83%A9%E3%83%9E%20%E4%BA%AC%E4%B8%B9%E6%B3%A2" target="_blank" rel="noopener">四万十ドラマ(高知県四万十町)</a><span class="mc-t sr">検索</span></li></ul><h4 class="mc-g mc-blue">🎪 物販・体験・ご案内</h4><ul class="mc-l"><li><span class="mc-n blue">27</span><a href="https://www.google.com/search?q=JR%E5%B1%B1%E9%99%B0%E6%9C%AC%E7%B7%9A%20%E4%BA%AC%E4%B8%B9%E6%B3%A2" target="_blank" rel="noopener">JR山陰本線(園部〜綾部)沿線地域公共交通活性化協議会</a><span class="mc-t sr">検索</span></li><li><span class="mc-n blue">28</span><a href="https://www.google.com/search?q=%E6%98%8E%E6%B2%BB%E5%AE%89%E7%94%B0%20%E4%BA%AC%E4%B8%B9%E6%B3%A2" target="_blank" rel="noopener">明治安田</a><span class="mc-t sr">検索</span></li><li><span class="mc-n blue">29</span><a href="https://www.google.com/search?q=%E4%BA%AC%E4%B8%B9%E6%B3%A2%E7%94%BA%20%E6%95%99%E8%82%B2%E5%A7%94%E5%93%A1%E4%BC%9A%20%E7%A4%BE%E4%BC%9A%E6%95%99%E8%82%B2%E8%AA%B2%20%E4%BA%AC%E4%B8%B9%E6%B3%A2" target="_blank" rel="noopener">京丹波町 教育委員会 社会教育課</a><span class="mc-t sr">検索</span></li><li><span class="mc-n blue">30</span><a href="https://www.google.com/search?q=%E4%BA%AC%E4%B8%B9%E6%B3%A2%E7%94%BA%E7%A7%BB%E4%BD%8F%E7%9B%B8%E8%AB%87%E7%AA%93%E5%8F%A3%20%E4%BA%AC%E4%B8%B9%E6%B3%A2" target="_blank" rel="noopener">京丹波町移住相談窓口</a><span class="mc-t sr">検索</span></li><li><span class="mc-n blue">31</span><a href="https://www.google.com/search?q=CLUB%E4%BA%AC%E4%B8%B9%E6%B3%A2%E3%83%96%E3%83%BC%E3%82%B9%20%E4%BA%AC%E4%B8%B9%E6%B3%A2" target="_blank" rel="noopener">CLUB京丹波ブース</a><span class="mc-t sr">検索</span></li><li><span class="mc-n blue">32</span><a href="https://www.kyotamba.org/" target="_blank" rel="noopener">京丹波町観光協会</a><span class="mc-t of">案内ページ</span></li><li><span class="mc-n blue">33</span><a href="https://www.google.com/search?q=%E4%BA%AC%E9%83%BD%E4%B8%AD%E9%83%A8%E5%BA%83%E5%9F%9F%E6%B6%88%E9%98%B2%E7%B5%84%E5%90%88%20%E5%9C%92%E9%83%A8%E6%B6%88%E9%98%B2%E7%BD%B2%20%E4%B8%B9%E6%B3%A2%E5%87%BA%E5%BC%B5%E6%89%80%20%E4%BA%AC%E4%B8%B9%E6%B3%A2" target="_blank" rel="noopener">京都中部広域消防組合 園部消防署 丹波出張所</a><span class="mc-t sr">検索</span></li><li><span class="mc-n blue">34</span><a href="https://www.google.com/search?q=%E4%BA%AC%E9%83%BD%E5%BA%9C%E5%8D%97%E4%B8%B9%E8%AD%A6%E5%AF%9F%E7%BD%B2%20%E4%BA%AC%E4%B8%B9%E6%B3%A2" target="_blank" rel="noopener">京都府南丹警察署</a><span class="mc-t sr">検索</span></li><li><span class="mc-n blue">35</span><a href="https://www.google.com/search?q=%E4%BA%AC%E4%B8%B9%E6%B3%A2%E6%A3%AE%E6%9E%97%E7%B5%84%E5%90%88%20%E4%BA%AC%E4%B8%B9%E6%B3%A2" target="_blank" rel="noopener">京丹波森林組合</a><span class="mc-t sr">検索</span></li></ul><h4 class="mc-g mc-green">🌳 全国都市緑化フェア関連</h4><ul class="mc-l"><li><span class="mc-n green">36</span><a href="https://www.pref.kyoto.jp/kikakuriji/news/kyototamba-fair.html" target="_blank" rel="noopener">全国都市緑化フェア</a><span class="mc-t of">案内ページ</span></li></ul><p class="mc-note">店名をタップすると、「案内ページ」はそのお店・団体の案内ページへ、「検索」はお店の名前での検索結果へ移動します(公式サイトを確認できたものだけ、案内ページにしています)。</p>
+</section>
   </div>
 
   <div class="foot">
